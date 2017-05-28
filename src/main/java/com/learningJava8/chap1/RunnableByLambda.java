@@ -4,7 +4,6 @@ public class RunnableByLambda implements IRunnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 	}
 	
