@@ -9,7 +9,7 @@ public class ExecuteAround {
 	
 	//before java8,you can only read one line
 	public static String processFile() throws IOException{
-		try(BufferedReader br = new BufferedReader(new FileReader("chap3/data.txt"))){
+		try(BufferedReader br = new BufferedReader(new FileReader("src/main/resources/chap3/data.txt"))){
 			return br.readLine();
 		}
 	}
@@ -20,14 +20,22 @@ public class ExecuteAround {
 	}
 	
 	public static String processFile(BufferedReaderProcessor p) throws IOException{
-		try(BufferedReader br = new BufferedReader(new FileReader("chap3/data.txt"))){
+		try(BufferedReader br = new BufferedReader(new FileReader("src/main/resources/chap3/data.txt"))){
 			//handle Object BufferedReader
 			return p.process(br);
 		}
 	}
 	
+	//main
 	public static void main(String[] args) throws IOException {
 		String resultString = processFile();
 		System.out.println(resultString);
+		
+		String oneline = processFile((BufferedReader br) -> br.readLine());
+		System.out.println(oneline);
+		
+		String twoline = processFile((BufferedReader br) -> br.readLine() + br.readLine());
+		System.out.println(twoline);
+		
 	}
 }
