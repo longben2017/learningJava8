@@ -1,4 +1,4 @@
-package com.learningJava8.chap1;
+package com.learningJava8.chap2;
 
 public class RunnableByLambda{
 	public static void main(String[] args) {

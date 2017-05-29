@@ -1,4 +1,4 @@
-package com.learningJava8.chap1;
+package com.learningJava8.chap2;
 
 import java.util.ArrayList;
 import java.util.Arrays;

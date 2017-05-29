@@ -1,4 +1,4 @@
-package com.learningJava8.chap1;
+package com.learningJava8.chap2;
 
 import java.util.Arrays;
 import java.util.List;
