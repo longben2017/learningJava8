@@ -44,4 +44,10 @@ public class Dish {
 	                           new Dish("pizza", true, 550, Dish.Type.OTHER),
 	                           new Dish("prawns", false, 400, Dish.Type.FISH),
 	                           new Dish("salmon", false, 450, Dish.Type.FISH));
+
+	@Override
+	public String toString() {
+		return "Dish [name=" + name + ", vegetarian=" + vegetarian
+				+ ", calories=" + calories + ", type=" + type + "]";
+	}
 }
