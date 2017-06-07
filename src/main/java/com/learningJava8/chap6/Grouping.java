@@ -4,11 +4,13 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.maxBy;
 import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -45,7 +47,8 @@ public class Grouping {
 	    System.out.println("Count dishes in groups: " + countDishesInGroups);
 	    
 	    Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType = 
-	    		Dish.menu.stream().collect(groupingBy(Dish::getType,reducing((Dish d1,Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)));
+	    		//Dish.menu.stream().collect(groupingBy(Dish::getType,reducing((Dish d1,Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)));
+	    		Dish.menu.stream().collect(groupingBy(Dish::getType,maxBy(Comparator.comparingInt(Dish::getCalories))));
 	    System.out.println("Most caloric dishes by type: " + mostCaloricDishesByType);
 	    
 	    Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOprionals =
