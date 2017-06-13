@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -73,9 +74,9 @@ public class BuildStreams {
 			}
 		};
 		IntStream.generate(fib).limit(5).forEach(System.out::println);
-		
-		System.out.println("---------");
-        long uniqueWords = Files.lines(Paths.get("src/main/resources/chap5/data.txt"), Charset.defaultCharset())
+
+		System.out.println("----flatMap-----");
+        long uniqueWords = Files.lines(Paths.get("src/main/resources/chap5/data.txt"))
                 .flatMap(line -> Arrays.stream(line.split(" ")))
                 .distinct()
                 .count();
