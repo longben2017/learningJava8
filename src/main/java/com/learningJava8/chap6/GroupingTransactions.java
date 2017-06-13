@@ -3,9 +3,12 @@ package com.learningJava8.chap6;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
 import static java.util.stream.Collectors.groupingBy;
+
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 public class GroupingTransactions {
 	 public static List<Transaction> transactions = Arrays.asList( new Transaction(Currency.EUR, 1500.0),
              new Transaction(Currency.USD, 2300.0),
@@ -22,7 +25,7 @@ public class GroupingTransactions {
              new Transaction(Currency.EUR, 6800.0) );
 	 
 	 private static void groupImperatively() {
-	        Map<Currency, List<Transaction>> transactionsByCurrencies = new HashMap<>();
+	        Map<Currency,List<Transaction>> transactionsByCurrencies = new HashMap<>();
 	        for (Transaction transaction : transactions) {
 	            Currency currency = transaction.getCurrency();
 	            List<Transaction> transactionsForCurrency = transactionsByCurrencies.get(currency);
@@ -37,13 +40,21 @@ public class GroupingTransactions {
 	    }
 	 
 	 private static void groupFunctionally() {
-	        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency));
-	        System.out.println(transactionsByCurrencies);
-	    }
+		 Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency));
+	     System.out.println(transactionsByCurrencies);
+	 }
+	 
+	 private static void groupFunctionallyThenSum() {
+	     Map<Currency, Double> transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency,Collectors.summingDouble(Transaction::getValue)));
+	     System.out.println(transactionsByCurrencies);
+	 }
 	 
 	 public static void main(String[] args) {
 		 groupImperatively();
+		 System.out.println("-----------------");
 		 groupFunctionally();
+		 System.out.println("-----------------");
+		 groupFunctionallyThenSum();
 	}
 	 
 	 public static class Transaction{
